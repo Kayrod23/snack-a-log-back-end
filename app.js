@@ -13,4 +13,4 @@ app.get("*", (req, res) => {
     res.status(404).json({error: "Not Found"});
 })
 
-modulr.exports = app;
+module.exports = app;
