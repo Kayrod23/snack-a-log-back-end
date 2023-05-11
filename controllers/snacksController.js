@@ -30,6 +30,20 @@ snacks.post("/", async (req, res) => {
     };
 });
 
+snacks.put("/:id", async (req, res) => {
+    const { id } = req.params;
+    const updatedSnack = await updateSnack(id, req.body);
+    res.status(200).json(updatedSnack);
+});
 
+snacks.delete("/:id", async (req, res) => {
+    const { id } = req.params;
+    const deletedSnack = await deleteSnack(id);
+    if (deletedSnack.id) {
+        res.status(200).json(deletedSnack);
+    } else {
+        res.status(404).json("Song Not Found!");
+    };
+});
 
 module.exports = snacks;
