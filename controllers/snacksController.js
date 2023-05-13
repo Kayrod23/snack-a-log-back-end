@@ -1,6 +1,6 @@
 const express = require("express");
 const snacks = express.Router();
-const { getAllSnacks, getSnack, createSnack } = require("../queries/snacks.js")
+const { getAllSnacks, getSnack, createSnack, updateSnack, deleteSnack } = require("../queries/snacks.js")
 
 snacks.get("/", async (req, res) => {
     const allSnacks = await getAllSnacks();
@@ -42,7 +42,7 @@ snacks.delete("/:id", async (req, res) => {
     if (deletedSnack.id) {
         res.status(200).json(deletedSnack);
     } else {
-        res.status(404).json("Song Not Found!");
+        res.status(404).json("Snack Not Found!");
     };
 });
 
