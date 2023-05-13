@@ -21,7 +21,7 @@ const getSnack = async (id) => {
 const createSnack = async (snack) => {
     try {
         const newSnack = await db.one(
-            "INSERT INTO snacks (name, image, protein, fiber, added_sugar, sodium, is_favorite) RETURNING *",
+            "INSERT INTO snacks (name, image, protein, fiber, added_sugar, sodium, is_favorite) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *",
             [snack.name, snack.image, snack.protein, snack.fiber, snack.added_sugar, snack.sodium, snack.is_favorite]
         );
         return newSnack;
@@ -29,6 +29,7 @@ const createSnack = async (snack) => {
         throw (error);
     };
 };
+
 
 const updateSnack = async (id, snack) => {
     try {
